@@ -11,7 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#05080a; --glass:rgba(18,26,23,.62); --line:rgba(61,220,132,.16); --text:#eaf4ee; --muted:#8fa39a;
+    --g:61,220,132; --on:#03170b; --b1c:#0f7a43; --b2c:#1d5f8a; --b3c:#6b8f0f; --bg:#05080a; --glass:rgba(18,26,23,.62); --line:rgba(var(--g),.16); --text:#eaf4ee; --muted:#8fa39a;
     --green:#3ddc84; --green2:#16c172; --lime:#b6ff3b; --gold:#e6b93a; --red:#ff5f6d; --blue:#6cb6ff;
   }
   *{box-sizing:border-box}
@@ -21,19 +21,19 @@
   /* ---------- Achtergrond ---------- */
   .bg{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
   .blob{position:absolute;border-radius:50%;filter:blur(90px);opacity:.55;mix-blend-mode:screen}
-  .b1{width:520px;height:520px;background:#0f7a43;top:-140px;left:-120px;animation:drift1 22s ease-in-out infinite}
-  .b2{width:460px;height:460px;background:#1d5f8a;bottom:-160px;right:-120px;animation:drift2 26s ease-in-out infinite}
-  .b3{width:360px;height:360px;background:#6b8f0f;top:40%;left:55%;opacity:.35;animation:drift3 30s ease-in-out infinite}
+  .b1{width:520px;height:520px;background:var(--b1c);transition:background 1s;top:-140px;left:-120px;animation:drift1 22s ease-in-out infinite}
+  .b2{width:460px;height:460px;background:var(--b2c);transition:background 1s;bottom:-160px;right:-120px;animation:drift2 26s ease-in-out infinite}
+  .b3{width:360px;height:360px;background:var(--b3c);transition:background 1s;top:40%;left:55%;opacity:.35;animation:drift3 30s ease-in-out infinite}
   @keyframes drift1{50%{transform:translate(180px,140px) scale(1.15)}}
   @keyframes drift2{50%{transform:translate(-200px,-120px) scale(1.2)}}
   @keyframes drift3{50%{transform:translate(-260px,-180px) scale(.85)}}
-  .grid-bg{position:absolute;inset:-50%;background-image:linear-gradient(rgba(61,220,132,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(61,220,132,.06) 1px,transparent 1px);background-size:48px 48px;transform:perspective(600px) rotateX(60deg);animation:gridmove 12s linear infinite;mask-image:radial-gradient(ellipse at center 30%,#000 10%,transparent 60%)}
+  .grid-bg{position:absolute;inset:-50%;background-image:linear-gradient(rgba(var(--g),.06) 1px,transparent 1px),linear-gradient(90deg,rgba(var(--g),.06) 1px,transparent 1px);background-size:48px 48px;transform:perspective(600px) rotateX(60deg);animation:gridmove 12s linear infinite;mask-image:radial-gradient(ellipse at center 30%,#000 10%,transparent 60%)}
   @keyframes gridmove{to{background-position:0 48px,0 0}}
 
   /* wietblaadjes */
   .leaf{position:absolute;top:-80px;opacity:0;animation:fall linear infinite;will-change:transform}
   .leaf .sway{width:100%;height:100%;animation:sway ease-in-out infinite alternate}
-  .leaf svg{display:block;width:100%;height:100%;filter:drop-shadow(0 0 8px rgba(61,220,132,.35))}
+  .leaf svg{display:block;width:100%;height:100%;filter:drop-shadow(0 0 8px rgba(var(--g),.35))}
   @keyframes fall{
     0%{transform:translate3d(0,-80px,0);opacity:0}
     8%{opacity:var(--op)}
@@ -44,7 +44,7 @@
     from{transform:rotate(calc(var(--rot) * -1)) translateX(-18px)}
     to{transform:rotate(var(--rot)) translateX(18px)}
   }
-  .scan{position:absolute;left:0;right:0;height:180px;background:linear-gradient(180deg,transparent,rgba(61,220,132,.05),transparent);animation:scan 7s linear infinite}
+  .scan{position:absolute;left:0;right:0;height:180px;background:linear-gradient(180deg,transparent,rgba(var(--g),.05),transparent);animation:scan 7s linear infinite}
   @keyframes scan{from{top:-200px}to{top:110%}}
 
   /* ---------- Layout ---------- */
@@ -53,29 +53,29 @@
   .onex{font-family:Orbitron,sans-serif;font-weight:900;font-size:clamp(54px,14vw,92px);letter-spacing:.12em;line-height:1;margin:0;
     background:linear-gradient(90deg,var(--green) 0%,var(--lime) 25%,#fff 50%,var(--lime) 75%,var(--green) 100%);background-size:200% auto;
     -webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 4s linear infinite;
-    filter:drop-shadow(0 0 22px rgba(61,220,132,.45))}
+    filter:drop-shadow(0 0 22px rgba(var(--g),.45))}
   @keyframes shine{to{background-position:-200% center}}
   .tag{display:inline-flex;align-items:center;gap:8px;margin-top:10px;padding:6px 14px;border-radius:999px;border:1px solid var(--line);background:rgba(10,16,14,.6);font-size:13px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
-  .dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 rgba(61,220,132,.7);animation:pulse 1.8s infinite}
-  @keyframes pulse{70%{box-shadow:0 0 0 10px rgba(61,220,132,0)}100%{box-shadow:0 0 0 0 rgba(61,220,132,0)}}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 rgba(var(--g),.7);animation:pulse 1.8s infinite}
+  @keyframes pulse{70%{box-shadow:0 0 0 10px rgba(var(--g),0)}100%{box-shadow:0 0 0 0 rgba(var(--g),0)}}
 
   .card{position:relative;background:var(--glass);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:18px;padding:22px;margin-bottom:16px;animation:rise .7s ease both;overflow:hidden}
   .card:nth-of-type(1){animation-delay:.1s}.card:nth-of-type(2){animation-delay:.2s}.card:nth-of-type(3){animation-delay:.3s}
-  .card::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;background:linear-gradient(120deg,transparent 30%,rgba(61,220,132,.55),transparent 70%);background-size:250% 100%;animation:border 6s linear infinite;-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+  .card::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;background:linear-gradient(120deg,transparent 30%,rgba(var(--g),.55),transparent 70%);background-size:250% 100%;animation:border 6s linear infinite;-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
   @keyframes border{to{background-position:-250% 0}}
   @keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
   .card h2{margin:0 0 16px;font-size:12px;text-transform:uppercase;letter-spacing:.18em;color:var(--green);display:flex;align-items:center;gap:10px}
-  .card h2 .n{font-family:Orbitron,sans-serif;width:24px;height:24px;border-radius:7px;display:grid;place-items:center;background:rgba(61,220,132,.14);font-size:12px}
+  .card h2 .n{font-family:Orbitron,sans-serif;width:24px;height:24px;border-radius:7px;display:grid;place-items:center;background:rgba(var(--g),.14);font-size:12px}
 
   label{display:block;font-size:14px;font-weight:600;margin:16px 0 7px}
   input[type=number]{width:100%;padding:12px 14px;border-radius:11px;border:1px solid var(--line);background:rgba(5,9,8,.7);color:var(--text);font:600 16px Inter,sans-serif;transition:.2s}
-  input[type=number]:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 3px rgba(61,220,132,.18)}
+  input[type=number]:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 3px rgba(var(--g),.18)}
 
   .mode{display:grid;grid-template-columns:1fr 1fr;gap:12px}
   .mode button{position:relative;padding:18px 10px;border-radius:14px;border:1px solid var(--line);background:rgba(5,9,8,.6);color:var(--text);font:800 17px Inter,sans-serif;cursor:pointer;transition:.25s;overflow:hidden}
   .mode button small{display:block;font-weight:500;font-size:12px;color:var(--muted);margin-top:5px}
-  .mode button:hover{transform:translateY(-2px);border-color:rgba(61,220,132,.5)}
-  .mode button.active{border-color:var(--green);background:linear-gradient(135deg,rgba(61,220,132,.22),rgba(5,9,8,.6));box-shadow:0 8px 30px -10px rgba(61,220,132,.6)}
+  .mode button:hover{transform:translateY(-2px);border-color:rgba(var(--g),.5)}
+  .mode button.active{border-color:var(--green);background:linear-gradient(135deg,rgba(var(--g),.22),rgba(5,9,8,.6));box-shadow:0 8px 30px -10px rgba(var(--g),.6)}
   .mode button .ic{display:inline-block;transition:.4s}
   .mode button.active .ic{animation:wiggle .6s ease}
   @keyframes wiggle{30%{transform:rotate(-14deg) scale(1.2)}60%{transform:rotate(10deg)}}
@@ -85,7 +85,7 @@
   .pills{display:flex;flex-wrap:wrap;gap:8px}
   .pill{padding:9px 17px;border-radius:999px;border:1px solid var(--line);background:rgba(5,9,8,.6);color:var(--text);font:600 14px Inter,sans-serif;cursor:pointer;transition:.2s}
   .pill:hover{border-color:var(--green);transform:translateY(-1px)}
-  .pill.active{background:var(--green);color:#03170b;border-color:var(--green);box-shadow:0 0 18px rgba(61,220,132,.45)}
+  .pill.active{background:var(--green);color:var(--on);border-color:var(--green);box-shadow:0 0 18px rgba(var(--g),.45)}
   .row-inline{display:flex;gap:8px;align-items:center;margin-top:8px}
   .row-inline input{flex:1}
   .row-inline span{color:var(--muted);font-weight:600;white-space:nowrap}
@@ -100,18 +100,21 @@
   .line{display:flex;justify-content:space-between;padding:12px 2px;border-bottom:1px dashed rgba(143,163,154,.18);font-size:15px}
   .line .k{color:var(--muted)} .line .v{font-weight:700;font-variant-numeric:tabular-nums}
   .v.black{color:var(--gold)} .v.green{color:var(--green)} .v.red{color:var(--red)} .v.blue{color:var(--blue)}
-  .profit{position:relative;margin-top:16px;padding:22px;border-radius:16px;text-align:center;background:radial-gradient(circle at 50% 0%,rgba(61,220,132,.28),rgba(5,9,8,.6) 70%);border:1px solid rgba(61,220,132,.5);overflow:hidden}
+  .profit{position:relative;margin-top:16px;padding:22px;border-radius:16px;text-align:center;background:radial-gradient(circle at 50% 0%,rgba(var(--g),.28),rgba(5,9,8,.6) 70%);border:1px solid rgba(var(--g),.5);overflow:hidden}
   .profit::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);transform:skewX(-20deg);animation:sweep 3.5s ease-in-out infinite}
   @keyframes sweep{60%,100%{left:130%}}
   .profit .k{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
-  .profit .v{font-family:Orbitron,sans-serif;font-size:clamp(32px,9vw,46px);font-weight:900;color:var(--green);margin-top:6px;text-shadow:0 0 24px rgba(61,220,132,.55);font-variant-numeric:tabular-nums}
+  .profit .v{font-family:Orbitron,sans-serif;font-size:clamp(32px,9vw,46px);font-weight:900;color:var(--green);margin-top:6px;text-shadow:0 0 24px rgba(var(--g),.55);font-variant-numeric:tabular-nums}
   .profit .s{font-size:13px;color:var(--muted);margin-top:6px}
   .bump{animation:bump .35s ease}
   @keyframes bump{40%{transform:scale(1.06)}}
+  body.amf{--g:178,102,255; --green:#b366ff; --lime:#e6bfff; --on:#16052e; --b1c:#5b1fa8; --b2c:#2a1d8a; --b3c:#8f1f86; --line:rgba(178,102,255,.2); --glass:rgba(22,16,32,.64)}
+  body.amf .tag .dot{background:var(--green)}
+  .leaf.out{transition:opacity 1.2s ease;opacity:0!important}
   .tabs{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:16px;padding:5px;border-radius:16px;background:rgba(5,9,8,.55);border:1px solid var(--line);animation:rise .6s ease both}
   .tabs button{padding:12px;border-radius:12px;border:0;background:none;color:var(--muted);font:800 15px Inter,sans-serif;cursor:pointer;transition:.2s}
   .tabs button:hover{color:var(--text)}
-  .tabs button.on{background:var(--green);color:#03170b;box-shadow:0 6px 22px -8px rgba(61,220,132,.8)}
+  .tabs button.on{background:var(--green);color:var(--on);box-shadow:0 6px 22px -8px rgba(var(--g),.8)}
   .amf-head,.amf-row{display:grid;grid-template-columns:1.1fr 1fr 1fr 34px;gap:8px;align-items:center}
   .amf-head{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:6px;padding:0 2px}
   .amf-head span:nth-child(3){text-align:right}
@@ -133,9 +136,9 @@
   .site b{font-family:Orbitron,sans-serif;color:var(--green);letter-spacing:.15em}
   .site small{flex-basis:100%;font-size:12px;letter-spacing:.05em;text-transform:none;color:var(--muted);opacity:.8}
   .site .arr{color:var(--green);transition:.25s}
-  .site:hover{border-color:var(--green);transform:translateY(-2px);box-shadow:0 10px 30px -12px rgba(61,220,132,.6)}
+  .site:hover{border-color:var(--green);transform:translateY(-2px);box-shadow:0 10px 30px -12px rgba(var(--g),.6)}
   .site:hover .arr{transform:translate(3px,-3px)}
-  .toplink{display:inline-block;margin-top:10px;font-size:13px;color:var(--green);text-decoration:none;border-bottom:1px dashed rgba(61,220,132,.4);padding-bottom:1px;transition:.2s}
+  .toplink{display:inline-block;margin-top:10px;font-size:13px;color:var(--green);text-decoration:none;border-bottom:1px dashed rgba(var(--g),.4);padding-bottom:1px;transition:.2s}
   .toplink:hover{color:var(--lime);border-color:var(--lime)}
   @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
 </style>
@@ -313,29 +316,53 @@ function weedLeaf(color){
   return `<svg viewBox="0 0 100 100"><line x1="50" y1="62" x2="50" y2="88" stroke="${color}" stroke-width="2" stroke-linecap="round"/>${paths}${veins}</svg>`;
 }
 
-(function leaves(){
-  const bg = $("bg"), colors = ["#3ddc84","#2bb36a","#7bd83f","#1f9a55","#9be15d"];
+/* ---- Amfetamine-kristal ---- */
+function crystal(base, light){
+  const n = 5 + Math.floor(Math.random() * 3), pts = [];
+  for (let i = 0; i < n; i++){
+    const a = (i / n) * Math.PI * 2 + (Math.random() - .5) * .5;
+    const r = (i % 2 ? 30 : 44) * (0.75 + Math.random() * .35) * (i === 0 ? 1.15 : 1);
+    pts.push([50 + Math.cos(a) * r * .72, 50 + Math.sin(a) * r]);
+  }
+  const c = [50 + (Math.random() - .5) * 10, 46 + (Math.random() - .5) * 10];
+  const shades = [light, base, "rgba(255,255,255,.55)", base, light, "rgba(40,0,70,.35)", base];
+  const facets = pts.map((pt, i) => {
+    const q = pts[(i + 1) % n];
+    return `<polygon points="${c.join(",")} ${pt.map(v => v.toFixed(1)).join(",")} ${q.map(v => v.toFixed(1)).join(",")}" fill="${shades[i % shades.length]}" stroke="rgba(255,255,255,.35)" stroke-width=".8"/>`;
+  }).join("");
+  return `<svg viewBox="0 0 100 100"><g>${facets}</g><circle cx="${c[0] - 8}" cy="${c[1] - 12}" r="3" fill="#fff" opacity=".8"/></svg>`;
+}
+
+let particleKind = null;
+function particles(kind){
+  if (kind === particleKind) return;
+  particleKind = kind;
+  const bg = $("bg");
+  bg.querySelectorAll(".leaf").forEach(el => { el.classList.add("out"); setTimeout(() => el.remove(), 1300); });
+  const leafCols = ["#3ddc84","#2bb36a","#7bd83f","#1f9a55","#9be15d"];
+  const amfCols = [["#9b4dff","#d9b3ff"],["#7a2fe0","#c08bff"],["#b366ff","#f0dcff"],["#5d1fb8","#a874ff"],["#c27dff","#ffffff"]];
   const count = window.innerWidth < 600 ? 16 : 28;
   for (let i = 0; i < count; i++){
     const el = document.createElement("div");
     el.className = "leaf";
-    const size = 26 + Math.random() * 46;
+    const size = kind === "amf" ? 16 + Math.random() * 34 : 26 + Math.random() * 46;
     el.style.width = el.style.height = size + "px";
     el.style.left = Math.random() * 100 + "vw";
     el.style.setProperty("--dx", (Math.random() * 260 - 130) + "px");
-    el.style.setProperty("--rot", (12 + Math.random() * 30) + "deg");
+    el.style.setProperty("--rot", (kind === "amf" ? 40 + Math.random() * 80 : 12 + Math.random() * 30) + "deg");
     el.style.setProperty("--op", (0.35 + Math.random() * 0.4).toFixed(2));
-    el.style.animationDuration = 11 + Math.random() * 14 + "s";
+    el.style.animationDuration = (kind === "amf" ? 9 : 11) + Math.random() * 14 + "s";
     el.style.animationDelay = -Math.random() * 25 + "s";
-    if (size < 40) el.style.filter = "blur(1.2px)";
+    if (size < (kind === "amf" ? 26 : 40)) el.style.filter = "blur(1.2px)";
     const sway = document.createElement("div");
     sway.className = "sway";
     sway.style.animationDuration = 2.5 + Math.random() * 2.5 + "s";
-    sway.innerHTML = weedLeaf(colors[i % colors.length]);
+    if (kind === "amf"){ const [b, l] = amfCols[i % amfCols.length]; sway.innerHTML = crystal(b, l); }
+    else sway.innerHTML = weedLeaf(leafCols[i % leafCols.length]);
     el.appendChild(sway);
     bg.appendChild(el);
   }
-})();
+}
 
 /* ---- Tellende cijfers ---- */
 const shown = {};
@@ -501,10 +528,12 @@ function showTab(t){
   document.querySelectorAll("#tabs button").forEach(b => b.classList.toggle("on", b.dataset.tab === t));
   $("tabWiet").classList.toggle("hidden", t !== "wiet");
   $("tabAmf").classList.toggle("hidden", t !== "amf");
+  document.body.classList.toggle("amf", t === "amf");
+  particles(t === "amf" ? "amf" : "wiet");
   try { localStorage.setItem("onex-tab", t); } catch {}
 }
 document.querySelectorAll("#tabs button").forEach(b => b.onclick = () => showTab(b.dataset.tab));
-try { if (localStorage.getItem("onex-tab") === "amf") showTab("amf"); } catch {}
+{ let t0 = "wiet"; try { if (localStorage.getItem("onex-tab") === "amf") t0 = "amf"; } catch {} showTab(t0); }
 bindPills("plantPresets","plants");
 ["ratio","loods","batchBags","batchMoney"].forEach(id => $(id).addEventListener("input", calc));
 calc();
